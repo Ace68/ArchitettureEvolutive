@@ -1,5 +1,8 @@
 using BrewUp.Sales.Domain;
+using BrewUp.Sales.Facade.Validators;
 using BrewUp.Sales.Infrastructure;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BrewUp.Sales.Facade;
@@ -8,7 +11,9 @@ public static class SalesFacadeHelper
 {
     public static IServiceCollection AddSalesFacade(this IServiceCollection services)
     {
-        // Register any services related to the Sales facade here
+        services.AddFluentValidationAutoValidation();
+        services.AddValidatorsFromAssemblyContaining<CreateSalesOrderValidator>();
+        
         services.AddScoped<ISalesFacade, SalesFacade>();
 
         services.AddSalesDomain();
@@ -16,9 +21,4 @@ public static class SalesFacadeHelper
 
         return services;
     }
-}
-
-internal class SalesFacade : ISalesFacade
-{
-    // Implementation will be added later
 }
