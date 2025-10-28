@@ -11,4 +11,6 @@ public record CustomerId
         
         Value = value;
     }
+    
+    public static CustomerId New() => new(Guid.NewGuid().ToString());
 }

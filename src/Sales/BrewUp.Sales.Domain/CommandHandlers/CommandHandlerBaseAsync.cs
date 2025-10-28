@@ -1,9 +1,15 @@
-﻿using Muflone.Messages.Commands;
+﻿using BrewUp.Shared.Domain;
+using Microsoft.Extensions.Logging;
+using Muflone.Messages.Commands;
+using Muflone.Persistence;
 
 namespace BrewUp.Sales.Domain.CommandHandlers;
 
-public abstract class CommandHandlerBaseAsync<TCommand>() : ICommandHandlerAsync<TCommand> where TCommand : Command
+public abstract class CommandHandlerBaseAsync<TCommand>(IRepository repository,
+    ILoggerFactory loggerFactory) : ICommandHandlerAsync<TCommand> where TCommand : Command
 {
+    protected readonly ILogger Logger = loggerFactory.CreateLogger<CommandHandlerBaseAsync<TCommand>>();
+    
     public abstract Task HandleAsync(TCommand command, CancellationToken cancellationToken = new());
     
     #region Dispose

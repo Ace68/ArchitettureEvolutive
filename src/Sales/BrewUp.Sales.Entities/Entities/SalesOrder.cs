@@ -1,7 +1,7 @@
 ﻿using BrewUp.Sales.SharedKernel.CustomTypes;
+using BrewUp.Sales.SharedKernel.Messages.Events;
 using BrewUp.Shared.Domain;
 using BrewUp.Shared.ExternalContracts;
-using BrewUp.Shared.ReadModel;
 
 namespace BrewUp.Sales.Entities.Entities;
 
@@ -15,12 +15,14 @@ public class SalesOrder : BrewUpAggregateRoot
     
     public DateTime SalesOrderDeliveryDate { get; private set; }
     
-    public IEnumerable<SalesOrderRow> SalesOrderRows { get; private set; } = [];
+    public virtual ICollection<SalesOrderRow> SalesOrderRows { get; private set; } = [];
+    
+    public string Status { get; private set; } = string.Empty;
     
     protected SalesOrder()
     {}
 
-    internal static SalesOrder Create(SalesOrderId salesOrderId, SalesOrderNumber salesOrderNumber,
+    public static SalesOrder Create(SalesOrderId salesOrderId, SalesOrderNumber salesOrderNumber,
         SalesOrderDate salesOrderDate, CustomerId customerId, CustomerName customerName,
         SalesOrderDeliveryDate salesOrderDeliveryDate, IEnumerable<SalesOrderRowJson> rows)
     {
@@ -32,12 +34,20 @@ public class SalesOrder : BrewUpAggregateRoot
         CustomerId customerId, CustomerName customerName, SalesOrderDeliveryDate salesOrderDeliveryDate,
         IEnumerable<SalesOrderRowJson> rows)
     {
-        // _salesOrderNumber = salesOrderNumber;
-        // _salesOrderDate = salesOrderDate;
-        //
-        // _customerId = customerId;
-        // _customerName = customerName;
-        //
-        // _salesOrderDeliveryDate = salesOrderDeliveryDate;
+        var rowsArray = rows.ToArray();
+        
+        Id = salesOrderId.Value;
+        SalesOrderNumber = salesOrderNumber.Value;
+        SalesOrderDate = salesOrderDate.Value;
+        CustomerId = customerId.Value;
+        CustomerName = customerName.Value;
+        SalesOrderDeliveryDate = salesOrderDeliveryDate.Value;
+        SalesOrderRows = rowsArray.Select(row => SalesOrderRow.Create(new SalesOrderId(Id),
+            new ProductId(row.ProductId), new ProductName(row.ProductName),
+            row.Quantity, row.Price)).ToList();
+        
+        Status = "Created";
+    
+        RaiseEvent(new SalesOrderCreated(salesOrderId, salesOrderNumber, salesOrderDate, customerId, customerName, salesOrderDeliveryDate, rowsArray));
     }
 }

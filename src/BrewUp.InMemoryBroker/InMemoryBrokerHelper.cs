@@ -10,8 +10,8 @@ public static class InMemoryBrokerHelper
     public static IServiceCollection AddInMemoryBroker(this IServiceCollection services)
     {
         services.AddSingleton<IMessageSubscriber, InMemorySubscriber>();
-        services.AddKeyedSingleton<IServiceBus, InMemoryBus>("InMemory");
-        services.AddKeyedSingleton<IEventBus, InMemoryBus>("InMemory");
+        services.AddSingleton<IServiceBus, InMemoryBus>();
+        services.AddSingleton<IEventBus, InMemoryBus>();
 
         services.AddHostedService<MessageHandlersStarter>();
         

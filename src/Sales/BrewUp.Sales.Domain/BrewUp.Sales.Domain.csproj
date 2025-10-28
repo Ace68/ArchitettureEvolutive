@@ -14,11 +14,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\BrewUp.Infrastructure\BrewUp.Infrastructure.csproj" />
     <ProjectReference Include="..\..\BrewUp.Shared\BrewUp.Shared.csproj" />
+    <ProjectReference Include="..\BrewUp.Sales.Entities\BrewUp.Sales.Entities.csproj" />
     <ProjectReference Include="..\BrewUp.Sales.SharedKernel\BrewUp.Sales.SharedKernel.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Entities\" />
   </ItemGroup>
 
 </Project>

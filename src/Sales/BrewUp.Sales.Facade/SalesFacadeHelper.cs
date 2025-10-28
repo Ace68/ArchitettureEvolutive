@@ -3,13 +3,15 @@ using BrewUp.Sales.Facade.Validators;
 using BrewUp.Sales.Infrastructure;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BrewUp.Sales.Facade;
 
 public static class SalesFacadeHelper
 {
-    public static IServiceCollection AddSalesFacade(this IServiceCollection services)
+    public static IServiceCollection AddSalesFacade(this IServiceCollection services,
+        IConfigurationManager configurationManager)
     {
         services.AddFluentValidationAutoValidation();
         services.AddValidatorsFromAssemblyContaining<CreateSalesOrderValidator>();
@@ -17,7 +19,7 @@ public static class SalesFacadeHelper
         services.AddScoped<ISalesFacade, SalesFacade>();
 
         services.AddSalesDomain();
-        services.AddSalesInfrastructure();
+        services.AddSalesInfrastructure(configurationManager);
 
         return services;
     }

@@ -1,3 +1,3 @@
 ﻿namespace BrewUp.Sales.SharedKernel.CustomTypes;
 
-public record ProductName(decimal Value);
+public record ProductName(string Value);

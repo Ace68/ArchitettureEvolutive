@@ -10,7 +10,7 @@ public class SalesModule : IModule
     
     public IServiceCollection Register(WebApplicationBuilder builder)
     {
-        builder.Services.AddSalesFacade();
+        builder.Services.AddSalesFacade(builder.Configuration);
         
         return builder.Services;
     }

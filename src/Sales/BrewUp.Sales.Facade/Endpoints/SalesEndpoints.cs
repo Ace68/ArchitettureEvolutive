@@ -24,11 +24,6 @@ public static class SalesEndpoints
                 "Creates a new sales order. This endpoint is used to add a new sales order.")
             .WithName("CreateSalesOrder");
 
-        group.MapGet("/", () => Results.Ok("Sales module is running"))
-            .WithName("GetSalesStatus")
-            .WithSummary("Get Sales module status")
-            .WithDescription("Returns the status of the Sales module");
-
         return app;
     }
 

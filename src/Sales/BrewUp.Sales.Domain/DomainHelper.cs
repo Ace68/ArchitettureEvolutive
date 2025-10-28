@@ -1,3 +1,4 @@
+using BrewUp.Sales.Domain.CommandHandlers;
 using Microsoft.Extensions.DependencyInjection;
 using Muflone;
 
@@ -8,8 +9,8 @@ public static class DomainHelper
     public static IServiceCollection AddSalesDomain(this IServiceCollection services)
     {
         services.AddScoped<ISalesDomainService, SalesDomainService>();
-        
-        //services.AddCommandHandler<>()
+
+        services.AddCommandHandler<CreateSalesOrderCommandHandlerAsync>();
         
         return services;
     }

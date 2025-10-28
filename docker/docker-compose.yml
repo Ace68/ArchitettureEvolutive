@@ -1,0 +1,18 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2025-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${Sa_Password:-#brew2025Up}
+      - MSSQL_PID=Developer
+    ports:
+      - 1433:1433
+    volumes: 
+       - type: bind
+         source: ./data
+         target: /var/opt/mssql/data
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
