@@ -1,10 +1,11 @@
 using BrewUp.Sales.Domain;
+using BrewUp.Sales.ReadModel.Services;
 using BrewUp.Shared.ExternalContracts;
+using BrewUp.Shared.ReadModel;
 using BrewUp.Shared.Validation;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.OpenApi;
 
 namespace BrewUp.Sales.Facade.Endpoints;
 
@@ -23,6 +24,14 @@ public static class SalesEndpoints
             .WithDescription(
                 "Creates a new sales order. This endpoint is used to add a new sales order.")
             .WithName("CreateSalesOrder");
+        
+        group.MapGet("/", HandleGetSalesOrder)
+            .Produces<IEnumerable<SalesOrderJson>>()
+            .Produces(StatusCodes.Status500InternalServerError)
+            .WithSummary("Get a list of sales orders")
+            .WithDescription(
+                "Get a list of sales orders.")
+            .WithName("GetSalesOrder");
 
         return app;
     }
@@ -49,5 +58,19 @@ public static class SalesEndpoints
         {
             return Results.BadRequest();
         }
+    }
+    
+    private static async Task<IResult> HandleGetSalesOrder(
+        ISalesOrderService salesOrderService,
+        int page = 1,
+        int pageSize = 10,
+        CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+
+        PagedResult<SalesOrderJson> result =
+            await salesOrderService.GetSalesOrdersAsync(page, pageSize, cancellationToken);
+        
+        return Results.Ok(result);
     }
 }

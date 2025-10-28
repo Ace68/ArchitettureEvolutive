@@ -42,4 +42,20 @@ public class SalesOrderRow : DtoBase
         Price = (double) price.Price;
         Currency = price.Currency;
     }
+    
+    public SalesOrderRowJson ToJson() => new ()
+    {
+        ProductId = ProductId,
+        ProductName = ProductName,
+        Quantity = new ProductQuantity
+        {
+            Quantity = (decimal) Quantity,
+            UnitOfMeasure = UnitOfMeasure
+        },
+        Price = new ProductPrice
+        {
+            Price = (decimal) Price,
+            Currency = Currency
+        }
+    };
 }

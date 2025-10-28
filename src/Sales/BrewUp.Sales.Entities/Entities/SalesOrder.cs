@@ -50,4 +50,16 @@ public class SalesOrder : BrewUpAggregateRoot
     
         RaiseEvent(new SalesOrderCreated(salesOrderId, salesOrderNumber, salesOrderDate, customerId, customerName, salesOrderDeliveryDate, rowsArray));
     }
+    
+    public SalesOrderJson ToJson() => new ()
+    {
+        Id = Id,
+        OrderNumber = SalesOrderNumber,
+        OrderDate = SalesOrderDate,
+        CustomerId = CustomerId,
+        CustomerName = CustomerName,
+        DeliveryDate = SalesOrderDeliveryDate,
+        Status = Status,
+        Rows = SalesOrderRows.Select(r => r.ToJson()).ToList()
+    };
 }
