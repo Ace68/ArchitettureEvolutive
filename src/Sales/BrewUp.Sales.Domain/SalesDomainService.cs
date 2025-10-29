@@ -19,7 +19,7 @@ internal class SalesDomainService(IServiceBus serviceBus) : ISalesDomainService
             new CustomerId(body.CustomerId),
             new CustomerName(body.CustomerName),
             new SalesOrderDeliveryDate(body.DeliveryDate),
-            body.Rows);
+            body.Rows, Guid.NewGuid());
 
         await serviceBus.SendAsync(command, cancellationToken);
         

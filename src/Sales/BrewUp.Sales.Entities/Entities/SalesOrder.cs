@@ -24,15 +24,16 @@ public class SalesOrder : BrewUpAggregateRoot
 
     public static SalesOrder Create(SalesOrderId salesOrderId, SalesOrderNumber salesOrderNumber,
         SalesOrderDate salesOrderDate, CustomerId customerId, CustomerName customerName,
-        SalesOrderDeliveryDate salesOrderDeliveryDate, IEnumerable<SalesOrderRowJson> rows)
+        SalesOrderDeliveryDate salesOrderDeliveryDate, IEnumerable<SalesOrderRowJson> rows,
+        Guid correlationId)
     {
         return new SalesOrder(salesOrderId, salesOrderNumber, salesOrderDate, customerId, customerName,
-            salesOrderDeliveryDate, rows);
+            salesOrderDeliveryDate, rows, correlationId);
     }
 
     private SalesOrder(SalesOrderId salesOrderId, SalesOrderNumber salesOrderNumber, SalesOrderDate salesOrderDate,
         CustomerId customerId, CustomerName customerName, SalesOrderDeliveryDate salesOrderDeliveryDate,
-        IEnumerable<SalesOrderRowJson> rows)
+        IEnumerable<SalesOrderRowJson> rows, Guid correlationId)
     {
         var rowsArray = rows.ToArray();
         
@@ -47,8 +48,9 @@ public class SalesOrder : BrewUpAggregateRoot
             row.Quantity, row.Price)).ToList();
         
         Status = "Created";
-    
-        RaiseEvent(new SalesOrderCreated(salesOrderId, salesOrderNumber, salesOrderDate, customerId, customerName, salesOrderDeliveryDate, rowsArray));
+
+        RaiseEvent(new SalesOrderCreated(salesOrderId, salesOrderNumber, salesOrderDate, customerId, customerName,
+            salesOrderDeliveryDate, rowsArray, correlationId));
     }
     
     public SalesOrderJson ToJson() => new ()

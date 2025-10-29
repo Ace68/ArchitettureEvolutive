@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="EventHandlers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BrewUp.Sales.Infrastructure\BrewUp.Sales.Infrastructure.csproj" />
   </ItemGroup>
 

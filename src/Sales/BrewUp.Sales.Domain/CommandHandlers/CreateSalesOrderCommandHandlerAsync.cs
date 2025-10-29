@@ -16,7 +16,8 @@ public sealed class CreateSalesOrderCommandHandlerAsync(IBrewUpRepository<Entiti
             command.CustomerId,
             command.CustomerName,
             command.SalesOrderDeliveryDate,
-            command.Rows);
+            command.Rows,
+            command.MessageId);
         
         await repository.AddAsync(aggregate, cancellationToken);
     }

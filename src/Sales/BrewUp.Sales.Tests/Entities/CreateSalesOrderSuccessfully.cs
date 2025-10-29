@@ -18,6 +18,8 @@ public sealed class CreateSalesOrderSuccessfully : SalesCommandSpecification<Cre
     private readonly CustomerName _customerName = new("Il Grottino del Muflone");
     private readonly SalesOrderDeliveryDate _salesOrderDeliveryDate = new(DateTime.UtcNow.AddDays(7));
     private readonly IEnumerable<SalesOrderRowJson> _rows = [];
+    
+    private readonly Guid _correlationId = Guid.NewGuid();
 
     public CreateSalesOrderSuccessfully()
     {
@@ -49,7 +51,8 @@ public sealed class CreateSalesOrderSuccessfully : SalesCommandSpecification<Cre
         _customerId,
         _customerName,
         _salesOrderDeliveryDate,
-        _rows);
+        _rows,
+        _correlationId);
 
     protected override ICommandHandlerAsync<CreateSalesOrder> OnHandler()
     {
@@ -59,6 +62,6 @@ public sealed class CreateSalesOrderSuccessfully : SalesCommandSpecification<Cre
     protected override IEnumerable<DomainEvent> Expect()
     {
         yield return new SalesOrderCreated(_salesOrderId, _salesOrderNumber, _salesOrderDate, _customerId,
-            _customerName, _salesOrderDeliveryDate, _rows.ToArray());
+            _customerName, _salesOrderDeliveryDate, _rows.ToArray(), _correlationId);
     }
 }

@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUp.InMemoryBroker", "Br
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUp.Sales.Entities", "Sales\BrewUp.Sales.Entities\BrewUp.Sales.Entities.csproj", "{E1CAB7A4-161F-4F11-8C57-F2ED125E2475}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUp.Warehouse.Entities", "Warehouse\BrewUp.Warehouse.Entities\BrewUp.Warehouse.Entities.csproj", "{6F28F394-7059-4002-9401-8392EF2B47F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -371,6 +373,18 @@ Global
 		{E1CAB7A4-161F-4F11-8C57-F2ED125E2475}.Release|x64.Build.0 = Release|Any CPU
 		{E1CAB7A4-161F-4F11-8C57-F2ED125E2475}.Release|x86.ActiveCfg = Release|Any CPU
 		{E1CAB7A4-161F-4F11-8C57-F2ED125E2475}.Release|x86.Build.0 = Release|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Debug|x64.Build.0 = Debug|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Debug|x86.Build.0 = Debug|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Release|x64.Build.0 = Release|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Release|x86.ActiveCfg = Release|Any CPU
+		{6F28F394-7059-4002-9401-8392EF2B47F2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -406,5 +420,6 @@ Global
 		{252BB96D-FCA8-48D5-B508-E2DF9F5F8A92} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{F34380B4-F51C-48FF-90FA-BDB9FADB3D87} = {4212B86E-31B4-C78C-2768-9246C758E373}
 		{E1CAB7A4-161F-4F11-8C57-F2ED125E2475} = {977C2148-914F-54A7-966B-A3CA61EBEEF1}
+		{6F28F394-7059-4002-9401-8392EF2B47F2} = {8FC7828B-D8A6-AC61-66B5-CC46A4BD8FA5}
 	EndGlobalSection
 EndGlobal

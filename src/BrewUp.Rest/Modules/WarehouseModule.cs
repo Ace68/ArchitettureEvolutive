@@ -10,7 +10,7 @@ public class WarehouseModule : IModule
     
     public IServiceCollection Register(WebApplicationBuilder builder)
     {
-        builder.Services.AddWarehouseFacade();
+        builder.Services.AddWarehouseFacade(builder.Configuration);
         
         return builder.Services;
     }

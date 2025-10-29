@@ -1,0 +1,21 @@
+{
+  "orderNumber": "20241029-1152",
+  "orderDate": "2024-10-29",
+  "customerId": "b76cbf20-dd54-4a50-aeea-ae40c9987d53",
+  "customerName": "Il Grottino del Muflone",
+  "deliveryDate": "2024-11-10",
+  "rows": [
+    {
+      "productId": "f6d98774-1801-4db7-8564-d6b2aecebe16",
+      "productName": "Muflone Weiss",
+      "quantity": {
+        "quantity": 20,
+        "unitOfMeasure": "Bottles"
+      },
+      "price": {
+        "price": 6,
+        "currency": "EUR"
+      }
+    }
+  ]
+}

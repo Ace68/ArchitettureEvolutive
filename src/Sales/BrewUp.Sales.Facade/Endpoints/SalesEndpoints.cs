@@ -26,7 +26,7 @@ public static class SalesEndpoints
             .WithName("CreateSalesOrder");
         
         group.MapGet("/", HandleGetSalesOrder)
-            .Produces<IEnumerable<SalesOrderJson>>()
+            .Produces<PagedResult<SalesOrderJson>>()
             .Produces(StatusCodes.Status500InternalServerError)
             .WithSummary("Get a list of sales orders")
             .WithDescription(

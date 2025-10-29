@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using BrewUp.Rest.Modules;
 using NetArchTest.Rules;
 
-namespace BrewUp.Rest.Tests;
+namespace BrewUp.Rest.Tests.Architecture;
 
 [ExcludeFromCodeCoverage]
 public class BrewUpArchitectureTests
