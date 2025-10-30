@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Giraffe" Version="6.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BrewUp.Shared.FSharp\BrewUp.Shared.FSharp.fsproj" />
+    <ProjectReference Include="..\BrewUp.Purchase.Domain.FSharp\BrewUp.Purchase.Domain.FSharp.fsproj" />
+    <ProjectReference Include="..\BrewUp.Purchase.SharedKernel.FSharp\BrewUp.Purchase.SharedKernel.FSharp.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="IPurchaseFacade.fs" />
+    <Compile Include="PurchaseFacade.fs" />
+    <Compile Include="Endpoints/PurchaseEndpoints.fs" />
+    <Compile Include="PurchaseFacadeHelper.fs" />
+  </ItemGroup>
+
+</Project>

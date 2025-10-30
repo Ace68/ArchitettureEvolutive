@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Giraffe" Version="6.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.4" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BrewUp.Shared.FSharp\BrewUp.Shared.FSharp.fsproj" />
+    <ProjectReference Include="..\BrewUp.Infrastructure.FSharp\BrewUp.Infrastructure.FSharp.fsproj" />
+    <ProjectReference Include="..\Sales.FSharp\BrewUp.Sales.Facade.FSharp\BrewUp.Sales.Facade.FSharp.fsproj" />
+    <ProjectReference Include="..\Purchase.FSharp\BrewUp.Purchase.Facade.FSharp\BrewUp.Purchase.Facade.FSharp.fsproj" />
+    <ProjectReference Include="..\Warehouse.FSharp\BrewUp.Warehouse.Facade.FSharp\BrewUp.Warehouse.Facade.FSharp.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Modules/IModule.fs" />
+    <Compile Include="Modules/OpenApiModule.fs" />
+    <Compile Include="Modules/SalesModule.fs" />
+    <Compile Include="Modules/PurchaseModule.fs" />
+    <Compile Include="Modules/WarehouseModule.fs" />
+    <Compile Include="Modules/ModuleExtensions.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+</Project>

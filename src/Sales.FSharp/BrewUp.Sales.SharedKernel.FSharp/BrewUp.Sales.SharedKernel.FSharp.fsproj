@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Muflone" Version="8.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BrewUp.Shared.FSharp\BrewUp.Shared.FSharp.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="CustomTypes/DomainIds.fs" />
+    <Compile Include="CustomTypes/ValueTypes.fs" />
+    <Compile Include="Messages/Events.fs" />
+  </ItemGroup>
+
+</Project>
