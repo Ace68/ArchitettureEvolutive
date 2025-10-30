@@ -1,6 +1,7 @@
 using BrewUp.Warehouse.Domain;
 using BrewUp.Warehouse.Facade.Acl;
 using BrewUp.Warehouse.Infrastructure;
+using BrewUp.Warehouse.ReadModel;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Muflone;
@@ -17,6 +18,7 @@ public static class WarehouseFacadeHelper
 
         services.AddWarehouseDomain();
         services.AddWarehouseInfrastructure(configurationManager);
+        services.AddWarehouseReadModel();
 
         services.AddIntegrationEventHandler<SalesOrderReadyForProcessingEventHandler>();
 

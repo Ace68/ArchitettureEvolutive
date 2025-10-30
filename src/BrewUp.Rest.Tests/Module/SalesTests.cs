@@ -29,16 +29,8 @@ public class SalesTests (AppHttpClientFixture integrationFixture)
                 {
                     ProductId = Guid.NewGuid().ToString(),
                     ProductName = "BrewUp IPA",
-                    Quantity = new ProductQuantity
-                    {
-                        Quantity = 10,
-                        UnitOfMeasure = "Bottles"
-                    },
-                    Price = new ProductPrice
-                    {
-                        Price = 5,
-                        Currency = "EUR"
-                    }
+                    Quantity = new ProductQuantity(10, "Bottles"),
+                    Price = new ProductPrice(5, "EUR")
                 }
             }
         };

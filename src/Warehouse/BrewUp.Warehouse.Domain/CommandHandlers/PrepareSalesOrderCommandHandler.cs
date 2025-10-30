@@ -1,14 +1,19 @@
-﻿using BrewUp.Warehouse.SharedKernel.Messages.Commands;
+﻿using BrewUp.Shared.Domain;
+using BrewUp.Warehouse.Entities.Entities;
+using BrewUp.Warehouse.SharedKernel.CustomTypes;
+using BrewUp.Warehouse.SharedKernel.Messages.Commands;
 using Microsoft.Extensions.Logging;
-using Muflone.Persistence;
 
 namespace BrewUp.Warehouse.Domain.CommandHandlers;
 
-public sealed class PrepareSalesOrderCommandHandler(IRepository repository, ILoggerFactory loggerFactory) 
-    : CommandHandlerBaseAsync<PrepareSalesOrder>(repository, loggerFactory)
+public sealed class PrepareSalesOrderCommandHandler(IBrewUpRepository<Product> repository, 
+    ILoggerFactory loggerFactory) : CommandHandlerBaseAsync<PrepareSalesOrder>(repository, loggerFactory)
 {
-    public override Task HandleAsync(PrepareSalesOrder command, CancellationToken cancellationToken = new ())
+    public override async Task HandleAsync(PrepareSalesOrder command, CancellationToken cancellationToken = new ())
     {
-        return Task.CompletedTask;
+        Product aggregate = await repository.GetByIdAsync(command.AggregateId.Value, cancellationToken);
+        aggregate.PrepareSalesOrder((SalesOrderId) command.AggregateId, command.SalesOrderNumber, command.Rows,
+            command.MessageId);
+        await repository.UpdateAsync(aggregate, cancellationToken);
     }
 }

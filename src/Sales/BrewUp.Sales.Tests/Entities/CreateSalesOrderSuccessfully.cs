@@ -29,16 +29,8 @@ public sealed class CreateSalesOrderSuccessfully : SalesCommandSpecification<Cre
             {
                 ProductId = Guid.NewGuid().ToString(),
                 ProductName = "Muflone IPA 33cl",
-                Quantity = new ProductQuantity
-                {
-                    Quantity = 24,
-                    UnitOfMeasure = "Bottles",
-                },
-                Price = new ProductPrice
-                {
-                    Price = 5,
-                    Currency = "EUR"
-                }
+                Quantity = new ProductQuantity(24, "Bottles"),
+                Price = new ProductPrice(5, "EUR")
             }
         });
     }
@@ -56,7 +48,7 @@ public sealed class CreateSalesOrderSuccessfully : SalesCommandSpecification<Cre
 
     protected override ICommandHandlerAsync<CreateSalesOrder> OnHandler()
     {
-        return new CreateSalesOrderCommandHandlerAsync(Repository, new NullLoggerFactory());
+        return new CreateSalesOrderCommandHandler(Repository, new NullLoggerFactory());
     }
     
     protected override IEnumerable<DomainEvent> Expect()

@@ -15,8 +15,8 @@ public class SalesOrderRow : DtoBase
     
     public double Price { get; private set; }
     public string Currency { get; private set; } = string.Empty;
-    
-    public virtual SalesOrder SalesOrder { get; set; } 
+
+    public virtual SalesOrder SalesOrder { get; init; } = null!;
     
     protected SalesOrderRow() 
     { }
@@ -47,15 +47,7 @@ public class SalesOrderRow : DtoBase
     {
         ProductId = ProductId,
         ProductName = ProductName,
-        Quantity = new ProductQuantity
-        {
-            Quantity = (decimal) Quantity,
-            UnitOfMeasure = UnitOfMeasure
-        },
-        Price = new ProductPrice
-        {
-            Price = (decimal) Price,
-            Currency = Currency
-        }
+        Quantity = new ProductQuantity(Quantity, UnitOfMeasure),
+        Price = new ProductPrice((decimal) Price, Currency)
     };
 }

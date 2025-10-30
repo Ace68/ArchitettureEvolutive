@@ -21,6 +21,5 @@ public sealed class CreateSalesOrder(
     public CustomerName CustomerName { get; private set; } = customerName;
     
     public SalesOrderDeliveryDate SalesOrderDeliveryDate { get; private set; } = salesOrderDeliveryDate;
-    
     public IEnumerable<SalesOrderRowJson> Rows { get; private set; } = rows;
 }

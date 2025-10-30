@@ -1,8 +1,8 @@
 ﻿using BrewUp.InMemoryBroker;
-using BrewUp.Sales.Entities.Entities;
-using BrewUp.Sales.Infrastructure;
-using BrewUp.Sales.Infrastructure.Repository;
 using BrewUp.Shared.Domain;
+using BrewUp.Warehouse.Entities.Entities;
+using BrewUp.Warehouse.Infrastructure;
+using BrewUp.Warehouse.Infrastructure.Repository;
 using KellermanSoftware.CompareNetObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,33 +11,33 @@ using Muflone;
 using Muflone.Messages.Commands;
 using Muflone.Messages.Events;
 
-namespace BrewUp.Sales.Tests.Entities;
+namespace BrewUp.Warehouse.Tests.Entities;
 
-public abstract class SalesCommandSpecification<TCommand> where TCommand : Command
+public abstract class WarehouseCommandSpecification<TCommand> where TCommand : Command
 	{
 		protected Exception ExpectedException { get; set; } = null!;
-		protected readonly Func<IServiceProvider, IBrewUpRepository<SalesOrder>> RepositoryFactory;
-		protected readonly IBrewUpRepository<SalesOrder> Repository;
+		protected readonly Func<IServiceProvider, IBrewUpRepository<Product>> RepositoryFactory;
+		protected readonly IBrewUpRepository<Product> Repository;
 		protected readonly Dictionary<Type, object> CommandHandlers = new();
 		protected readonly Dictionary<object, Command> CommandsToExecute = new();
 
-		protected SalesCommandSpecification()
+		protected WarehouseCommandSpecification()
 		{
 			ServiceCollection services = [];
 			services.AddInMemoryBroker();
 			services.AddLogging();
     
-			var builder = new DbContextOptionsBuilder<SalesContext>();
+			var builder = new DbContextOptionsBuilder<WarehouseContext>();
 			builder.UseInMemoryDatabase("BrewUp");
 			var options = builder.Options;
 
 			// Create the factory function
 			RepositoryFactory = provider =>
 			{
-				var context = new SalesContext(options);
+				var context = new WarehouseContext(options);
 				var eventBus = provider.GetRequiredService<IEventBus>();
 				var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
-				return new SalesOrderRepository(context, eventBus, loggerFactory);
+				return new ProductRepository(context, eventBus, loggerFactory);
 			};
 
 			// Register the factory with DI

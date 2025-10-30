@@ -64,4 +64,12 @@ public class SalesOrder : BrewUpAggregateRoot
         Status = Status,
         Rows = SalesOrderRows.Select(r => r.ToJson()).ToList()
     };
+
+    public void CloseSalesOrder(SalesOrderId aggregateId, SalesOrderDeliveryDate orderDeliveryDate, Guid correlationId)
+    {
+        SalesOrderDeliveryDate = orderDeliveryDate.Value;
+        Status = "Closed";
+        
+        RaiseEvent(new SalesOrderClosed(aggregateId, orderDeliveryDate, correlationId ));
+    }
 }

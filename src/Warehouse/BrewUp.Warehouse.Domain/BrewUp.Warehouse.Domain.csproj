@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BrewUp.Warehouse.Entities\BrewUp.Warehouse.Entities.csproj" />
     <ProjectReference Include="..\BrewUp.Warehouse.SharedKernel\BrewUp.Warehouse.SharedKernel.csproj" />
   </ItemGroup>
 

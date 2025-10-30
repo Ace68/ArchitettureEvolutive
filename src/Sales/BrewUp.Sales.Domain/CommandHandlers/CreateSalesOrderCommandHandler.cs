@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace BrewUp.Sales.Domain.CommandHandlers;
 
-public sealed class CreateSalesOrderCommandHandlerAsync(IBrewUpRepository<Entities.Entities.SalesOrder> repository,
+public sealed class CreateSalesOrderCommandHandler(IBrewUpRepository<Entities.Entities.SalesOrder> repository,
     ILoggerFactory loggerFactory) : CommandHandlerBaseAsync<CreateSalesOrder>(repository, loggerFactory)
 {
     public override async Task HandleAsync(CreateSalesOrder command, CancellationToken cancellationToken = new ())

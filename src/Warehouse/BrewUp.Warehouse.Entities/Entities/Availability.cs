@@ -27,4 +27,9 @@ public class Availability : DtoBase
         WarehouseReference = warehouseReference.Value;
         Quantity = (double) quantity.Quantity;
     }
+    
+    internal void UpdateAvailability(ProductQuantity quantity)
+    {
+        Quantity = (double) quantity.Quantity;
+    }
 }

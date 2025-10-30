@@ -10,7 +10,8 @@ public static class DomainHelper
     {
         services.AddScoped<ISalesDomainService, SalesDomainService>();
 
-        services.AddCommandHandler<CreateSalesOrderCommandHandlerAsync>();
+        services.AddCommandHandler<CreateSalesOrderCommandHandler>();
+        services.AddCommandHandler<CloseSalesOrderCommandHandler>();
         
         return services;
     }

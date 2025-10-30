@@ -1,6 +1,7 @@
 ﻿using BrewUp.Shared.Domain;
 using BrewUp.Shared.ExternalContracts;
 using BrewUp.Warehouse.SharedKernel.CustomTypes;
+using BrewUp.Warehouse.SharedKernel.Messages.Events;
 
 namespace BrewUp.Warehouse.Entities.Entities;
 
@@ -29,9 +30,24 @@ public class Product : BrewUpAggregateRoot
         ProductDescription = productDescription.Value;
         ProductType = productType.Value;
     }
-    
-    public void UpdateAvailability(ProductQuantity quantity, WarehouseReference warehouseReference)
+
+    public void PrepareSalesOrder(SalesOrderId salesOrderId, SalesOrderNumber salesOrderNumber,
+        IEnumerable<SalesOrderRowJson> rows, Guid correlationId)
     {
-        //Availability.UpdateQuantity(quantity);
+        IEnumerable<SalesOrderRowJson> productAvailable = [];
+        foreach (var row in rows)
+        {
+            Availability? availability = Availabilities.FirstOrDefault(a => a.ProductId == row.ProductId);
+            if (availability == null) continue;
+            
+            productAvailable = productAvailable.Concat(new List<SalesOrderRowJson>
+            {
+                row
+            });
+                
+            availability.UpdateAvailability(row.Quantity with {Quantity = availability.Quantity - row.Quantity.Quantity});
+        }
+
+        RaiseEvent(new AvailabilityUpdated(salesOrderId, salesOrderNumber, productAvailable, correlationId));
     }
 }

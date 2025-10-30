@@ -8,7 +8,7 @@ namespace BrewUp.Warehouse.Infrastructure;
 public class WarehouseContext(DbContextOptions<WarehouseContext> options) : DbContext(options)
 {
     public DbSet<Product> Product { get; set; }
-    public DbSet<Availability> Availabilities { get; set; }
+    public DbSet<Availability> Availability { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

@@ -7,6 +7,7 @@ namespace BrewUp.Warehouse.Domain.CommandHandlers;
 public abstract class CommandHandlerBaseAsync<TCommand>(IRepository repository,
     ILoggerFactory loggerFactory) : ICommandHandlerAsync<TCommand> where TCommand : Command
 {
+    protected readonly IRepository Repository = repository;
     protected readonly ILogger Logger = loggerFactory.CreateLogger<CommandHandlerBaseAsync<TCommand>>();
     
     public abstract Task HandleAsync(TCommand command, CancellationToken cancellationToken = new());
