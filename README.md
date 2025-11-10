@@ -1,6 +1,6 @@
 # BrewUp API
 
-A .NET 9 Minimal API solution for managing the preparation of Brescia-style skewer ("spiedo bresciano").
+A .NET 9 Minimal API solution to use as demo for fitness functions, BDD, e2e tests.
 
 ## Project Structure
 
