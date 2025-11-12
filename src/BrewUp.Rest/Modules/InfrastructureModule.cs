@@ -3,18 +3,15 @@ using BrewUp.Shared.Validation;
 
 namespace BrewUp.Rest.Modules;
 
-public class InfrastructureModule : IModule
+public static class InfrastructureModule
 {
-    public bool IsEnabled => true;
-    public int Order => 0;
-    
-    public IServiceCollection Register(WebApplicationBuilder builder)
-    {
-        builder.Services.AddScoped<ValidationHandler>();
-        builder.Services.AddInMemoryBroker();
-        
-        return builder.Services;
-    }
+  public static IServiceCollection Register(WebApplicationBuilder builder)
+  {
+    builder.Services.AddScoped<ValidationHandler>();
+    builder.Services.AddInMemoryBroker();
 
-    public WebApplication Configure(WebApplication app) => app;
+    return builder.Services;
+  }
+
+  public static WebApplication Configure(WebApplication app) => app;
 }

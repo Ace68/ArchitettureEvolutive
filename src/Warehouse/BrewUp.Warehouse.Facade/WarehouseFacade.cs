@@ -1,5 +1,5 @@
 ﻿namespace BrewUp.Warehouse.Facade;
 
-internal class WarehouseFacade : IWarehouseFacade
+public class WarehouseFacade : IWarehouseFacade
 {
 }

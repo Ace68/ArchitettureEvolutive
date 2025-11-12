@@ -1,24 +1,31 @@
+using BrewUp.Purchase.Domain;
 using BrewUp.Purchase.Facade;
-using BrewUp.Purchase.Facade.Endpoints;
+using BrewUp.Purchase.Infrastructure;
 
 namespace BrewUp.Rest.Modules;
 
-public class PurchaseModule : IModule
+public static class PurchaseModule
 {
-    public bool IsEnabled => true;
-    public int Order => 1;
-    
-    public IServiceCollection Register(WebApplicationBuilder builder)
-    {
-        builder.Services.AddPurchaseFacade();
-        
-        return builder.Services;
-    }
+  public static IServiceCollection Register(WebApplicationBuilder builder)
+  {
+    builder.Services.AddScoped<IPurchaseFacade, PurchaseFacade>();
 
-    public WebApplication Configure(WebApplication app)
-    {
-        app.MapPurchaseEndpoints();
-        
-        return app;
-    }
+    builder.Services.AddPurchaseDomain();
+    builder.Services.AddPurchaseInfrastructure();
+
+    return builder.Services;
+  }
+
+  public static WebApplication Configure(WebApplication app)
+  {
+    var group = app.MapGroup("/v1/purchase")
+      .WithTags("Purchase");
+
+    group.MapGet("/", () => Results.Ok("Purchase module is running"))
+      .WithName("GetPurchaseStatus")
+      .WithSummary("Get Purchase module status")
+      .WithDescription("Returns the status of the Purchase module");
+
+    return app;
+  }
 }

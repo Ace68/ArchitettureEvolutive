@@ -3,12 +3,9 @@ using Scalar.AspNetCore;
 
 namespace BrewUp.Rest.Modules;
 
-public class OpenApiModule : IModule
+public static class OpenApiModule
 {
-  public bool IsEnabled => true;
-  public int Order => 0;
-
-  public IServiceCollection Register(WebApplicationBuilder builder)
+  public static IServiceCollection Register(WebApplicationBuilder builder)
   {
     builder.Services.AddOpenApi(options =>
     {
@@ -33,7 +30,7 @@ public class OpenApiModule : IModule
     return builder.Services;
   }
 
-  public WebApplication Configure(WebApplication app)
+  public static WebApplication Configure(WebApplication app)
   {
     app.MapOpenApi();
     app.MapScalarApiReference(options =>
