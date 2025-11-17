@@ -353,3 +353,4 @@ MigrationBackup/
 .ionide/
 .cr/
 src/.idea
+/src/BrewUp.Rest/appsettings.Development.json
