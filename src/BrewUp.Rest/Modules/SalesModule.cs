@@ -17,8 +17,9 @@ public class SalesModule : IModule
 
     public WebApplication Configure(WebApplication app)
     {
-        app.MapSalesEndpoints();
-        
-        return app;
+      app.MapSalesEndpoints();
+      app.MapMcp("/salesmcp");
+
+      return app;
     }
 }

@@ -1,5 +1,3 @@
-using BrewUp.Sales.Domain;
-using BrewUp.Sales.ReadModel.Services;
 using BrewUp.Shared.ExternalContracts;
 using BrewUp.Shared.ReadModel;
 using BrewUp.Shared.Validation;
@@ -36,7 +34,7 @@ public static class SalesEndpoints
   }
 
   private static async Task<IResult> HandlePostCreateSalesOrder(
-      ISalesDomainService salesDomainService,
+      ISalesFacade salesFacade,
       IValidator<CreateSalesOrderJson> validator,
       ValidationHandler validationHandler,
       CreateSalesOrderJson body,
@@ -50,7 +48,7 @@ public static class SalesEndpoints
 
     try
     {
-      string salesOrderId = await salesDomainService.CreateSalesOrderAsync(body, cancellationToken);
+      string salesOrderId = await salesFacade.CreateSalesOrderAsync(body, cancellationToken);
       return Results.Created($"/v1/sales/{salesOrderId}", salesOrderId);
     }
     catch
@@ -60,7 +58,7 @@ public static class SalesEndpoints
   }
 
   private static async Task<IResult> HandleGetSalesOrder(
-      ISalesOrderService salesOrderService,
+      ISalesFacade salesFacade,
       int page = 1,
       int pageSize = 10,
       CancellationToken cancellationToken = default)
@@ -68,7 +66,7 @@ public static class SalesEndpoints
     cancellationToken.ThrowIfCancellationRequested();
 
     PagedResult<SalesOrderJson> result =
-        await salesOrderService.GetSalesOrdersAsync(page, pageSize, cancellationToken);
+        await salesFacade.GetSalesOrdersAsync(page, pageSize, cancellationToken);
 
     return Results.Ok(result);
   }
