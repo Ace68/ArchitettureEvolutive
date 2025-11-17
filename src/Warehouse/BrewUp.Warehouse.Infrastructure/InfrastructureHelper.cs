@@ -13,9 +13,9 @@ public static class InfrastructureHelper
         IConfigurationManager configurationManager)
     {
         services.AddDbContext<WarehouseContext>(options =>
-            options.UseSqlServer(configurationManager.GetConnectionString("sqlServer")!));
-        
-        services.AddScoped<IBrewUpRepository<Product>, ProductRepository>();
+            options.UseSqlServer(configurationManager["BrewUp:SqlServer:ConnectionString"]!));
+
+    services.AddScoped<IBrewUpRepository<Product>, ProductRepository>();
         
         return services;
     }
