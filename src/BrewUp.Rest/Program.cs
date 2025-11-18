@@ -7,7 +7,6 @@ using BrewUp.Sales.Facade.Acl;
 using BrewUp.Sales.Facade.Validators;
 using BrewUp.Sales.Infrastructure;
 using BrewUp.Sales.Infrastructure.Repository;
-using BrewUp.Sales.ReadModel;
 using BrewUp.Sales.ReadModel.EventHandlers;
 using BrewUp.Sales.ReadModel.Queries;
 using BrewUp.Sales.ReadModel.Services;
