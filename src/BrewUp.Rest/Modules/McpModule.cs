@@ -1,4 +1,8 @@
-﻿namespace BrewUp.Rest.Modules;
+﻿using BrewUp.Sales.Facade;
+using BrewUp.Warehouse.Facade;
+using System;
+
+namespace BrewUp.Rest.Modules;
 
 public class McpModule : IModule
 {
@@ -8,9 +12,18 @@ public class McpModule : IModule
 
     public IServiceCollection Register(WebApplicationBuilder builder)
     {
-      builder.Services.AddMcpServer()
+      builder.Services.AddMcpServer(options =>
+      {
+        options.ServerInfo = new ()
+        {
+          Name = "BrewUp Management Control Protocol",
+          Version = "1.0.0",
+        };
+
+        options.ServerInstructions = "Welcome to BrewUp MCP Server. You are an assistant to use to interact with the BrewUp system.";
+      })
         .WithHttpTransport()
-        .WithToolsFromAssembly();
+        .WithToolsFromAssembly(typeof(SalesFacadeHelper).Assembly);
 
         return builder.Services;
     }

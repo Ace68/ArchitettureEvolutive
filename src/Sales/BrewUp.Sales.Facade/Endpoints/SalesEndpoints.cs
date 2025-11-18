@@ -4,6 +4,8 @@ using BrewUp.Shared.Validation;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
+using System.Collections.Generic;
 
 namespace BrewUp.Sales.Facade.Endpoints;
 
@@ -29,6 +31,17 @@ public static class SalesEndpoints
         .WithDescription(
             "Get a list of sales orders.")
         .WithName("GetSalesOrder");
+
+    group.MapGet("/mcp/routes", (IEnumerable<EndpointDataSource> endpointSources) => 
+    {
+      var endpoint = endpointSources.SelectMany(source => source.Endpoints);
+      return Results.Ok(endpoint.Select(r => new
+      {
+        r.DisplayName,
+        RoutePattern = (r as RouteEndpoint)?.RoutePattern.RawText,
+        Metadata = r.Metadata.Select(m => m.GetType().Name)
+      }));
+    });
 
     return app;
   }

@@ -354,3 +354,4 @@ MigrationBackup/
 .cr/
 src/.idea
 /src/BrewUp.Rest/appsettings.Development.json
+/src/BrewUp.Rest/appsettings.Development.json
