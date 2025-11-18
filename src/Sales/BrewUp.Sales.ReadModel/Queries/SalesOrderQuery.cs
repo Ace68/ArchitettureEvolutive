@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace BrewUp.Sales.ReadModel.Queries;
 
-internal sealed class SalesOrderQuery(SalesContext salesContext,
+public sealed class SalesOrderQuery(SalesContext salesContext,
     ILoggerFactory loggerFactory) : IQueries<SalesOrder>
 {
     private readonly ILogger _logger = loggerFactory.CreateLogger<SalesOrderQuery>();

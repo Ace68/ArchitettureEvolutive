@@ -15,7 +15,7 @@ public static class InfrastructureHelper
         services.AddDbContext<SalesContext>(options =>
             options.UseSqlServer(configurationManager["BrewUp:SqlServer:ConnectionString"]!));
 
-    services.AddScoped<IBrewUpRepository<SalesOrder>, SalesOrderRepository>();
+        services.AddScoped<IBrewUpRepository<SalesOrder>, SalesOrderRepository>();
         
         return services;
     }

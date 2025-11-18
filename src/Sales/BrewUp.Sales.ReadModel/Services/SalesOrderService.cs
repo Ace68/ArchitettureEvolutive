@@ -4,7 +4,7 @@ using BrewUp.Shared.ReadModel;
 
 namespace BrewUp.Sales.ReadModel.Services;
 
-internal sealed class SalesOrderService(IQueries<SalesOrder> salesOrderQuery) : ISalesOrderService
+public sealed class SalesOrderService(IQueries<SalesOrder> salesOrderQuery) : ISalesOrderService
 {
     public async Task<PagedResult<SalesOrderJson>> GetSalesOrdersAsync(int page, int pageSize, CancellationToken cancellationToken)
     {

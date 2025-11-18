@@ -5,7 +5,7 @@ using Muflone.Persistence;
 
 namespace BrewUp.Sales.Domain;
 
-internal class SalesDomainService(IServiceBus serviceBus) : ISalesDomainService
+public class SalesDomainService(IServiceBus serviceBus) : ISalesDomainService
 {
     public async Task<string> CreateSalesOrderAsync(CreateSalesOrderJson body, CancellationToken cancellationToken)
     {

@@ -1,16 +1,23 @@
 using BrewUp.Rest.Modules;
 using BrewUp.Sales.Domain;
+using BrewUp.Sales.Domain.CommandHandlers;
+using BrewUp.Sales.Entities.Entities;
 using BrewUp.Sales.Facade;
 using BrewUp.Sales.Facade.Acl;
 using BrewUp.Sales.Facade.Validators;
 using BrewUp.Sales.Infrastructure;
+using BrewUp.Sales.Infrastructure.Repository;
 using BrewUp.Sales.ReadModel;
+using BrewUp.Sales.ReadModel.EventHandlers;
+using BrewUp.Sales.ReadModel.Queries;
 using BrewUp.Sales.ReadModel.Services;
+using BrewUp.Shared.Domain;
 using BrewUp.Shared.ExternalContracts;
 using BrewUp.Shared.ReadModel;
 using BrewUp.Shared.Validation;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using Muflone;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,9 +28,20 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateSalesOrderValidator>(
 
 builder.Services.AddScoped<ISalesFacade, SalesFacade>();
 
-builder.Services.AddSalesDomain();
-builder.Services.AddSalesReadModel();
-builder.Services.AddSalesInfrastructure(builder.Configuration);
+builder.Services.AddScoped<ISalesDomainService, SalesDomainService>();
+
+builder.Services.AddCommandHandler<CreateSalesOrderCommandHandler>();
+builder.Services.AddCommandHandler<CloseSalesOrderCommandHandler>();
+
+builder.Services.AddScoped<IQueries<SalesOrder>, SalesOrderQuery>();
+builder.Services.AddScoped<ISalesOrderService, SalesOrderService>();
+
+builder.Services.AddDomainEventHandler<SalesOrderCreatedEventHandler>();
+
+builder.Services.AddDbContext<SalesContext>(options =>
+    options.UseSqlServer(builder.Configuration["BrewUp:SqlServer:ConnectionString"]!));
+
+builder.Services.AddScoped<IBrewUpRepository<SalesOrder>, SalesOrderRepository>();
 
 builder.Services.AddIntegrationEventHandler<SalesOrderProductsPreparedEventHandler>();
 #endregion
