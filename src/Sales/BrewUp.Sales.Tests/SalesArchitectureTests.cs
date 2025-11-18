@@ -20,6 +20,7 @@ public class SalesArchitectureTests
             "BrewUp.Warehouse.Infrastructure",
             "BrewUp.Warehouse.ReadModel",
             "BrewUp.Warehouse.SharedKernel",
+            
             "BrewUp.Purchase.Domain",
             "BrewUp.Purchase.Facade",
             "BrewUp.Purchase.Infrastructure",
