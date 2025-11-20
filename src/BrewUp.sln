@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11217.181 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "90 Presentation", "90 Presentation", "{2C23F739-4CCF-4D98-5F80-CB5325689DE4}"
 EndProject
@@ -74,6 +74,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUp.Sales.Entities", "Sales\BrewUp.Sales.Entities\BrewUp.Sales.Entities.csproj", "{E1CAB7A4-161F-4F11-8C57-F2ED125E2475}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUp.Warehouse.Entities", "Warehouse\BrewUp.Warehouse.Entities\BrewUp.Warehouse.Entities.csproj", "{6F28F394-7059-4002-9401-8392EF2B47F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mediator", "Mediator", "{761CAA62-B377-426D-AB45-E1922A341540}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrewUp.Mediator.Facade", "Mediator\BrewUp.Mediator.Facade\BrewUp.Mediator.Facade.csproj", "{11E4DC45-473F-48AF-96C0-9B3538AB6F12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -385,6 +389,18 @@ Global
 		{6F28F394-7059-4002-9401-8392EF2B47F2}.Release|x64.Build.0 = Release|Any CPU
 		{6F28F394-7059-4002-9401-8392EF2B47F2}.Release|x86.ActiveCfg = Release|Any CPU
 		{6F28F394-7059-4002-9401-8392EF2B47F2}.Release|x86.Build.0 = Release|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Debug|x64.Build.0 = Debug|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Debug|x86.Build.0 = Debug|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Release|x64.ActiveCfg = Release|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Release|x64.Build.0 = Release|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Release|x86.ActiveCfg = Release|Any CPU
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -421,5 +437,10 @@ Global
 		{F34380B4-F51C-48FF-90FA-BDB9FADB3D87} = {4212B86E-31B4-C78C-2768-9246C758E373}
 		{E1CAB7A4-161F-4F11-8C57-F2ED125E2475} = {977C2148-914F-54A7-966B-A3CA61EBEEF1}
 		{6F28F394-7059-4002-9401-8392EF2B47F2} = {8FC7828B-D8A6-AC61-66B5-CC46A4BD8FA5}
+		{761CAA62-B377-426D-AB45-E1922A341540} = {980CB5DE-473C-0215-9804-C595D1F8FF98}
+		{11E4DC45-473F-48AF-96C0-9B3538AB6F12} = {761CAA62-B377-426D-AB45-E1922A341540}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8203205A-A0EB-47F3-854E-2CDF926B7AC5}
 	EndGlobalSection
 EndGlobal

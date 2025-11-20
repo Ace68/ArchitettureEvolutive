@@ -14,14 +14,6 @@ public static class SalesEndpoints
     var group = app.MapGroup("/v1/sales")
         .WithTags("Sales");
 
-    group.MapPost("/", HandlePostCreateSalesOrder)
-        .Produces(StatusCodes.Status201Created)
-        .Produces(StatusCodes.Status500InternalServerError)
-        .WithSummary("Create a new sales order")
-        .WithDescription(
-            "Creates a new sales order. This endpoint is used to add a new sales order.")
-        .WithName("CreateSalesOrder");
-
     group.MapGet("/", HandleGetSalesOrder)
         .Produces<PagedResult<SalesOrderJson>>()
         .Produces(StatusCodes.Status500InternalServerError)
@@ -31,30 +23,6 @@ public static class SalesEndpoints
         .WithName("GetSalesOrder");
 
     return app;
-  }
-
-  private static async Task<IResult> HandlePostCreateSalesOrder(
-      ISalesFacade salesFacade,
-      IValidator<CreateSalesOrderJson> validator,
-      ValidationHandler validationHandler,
-      CreateSalesOrderJson body,
-      CancellationToken cancellationToken)
-  {
-    cancellationToken.ThrowIfCancellationRequested();
-
-    await validationHandler.ValidateAsync(validator, body);
-    if (!validationHandler.IsValid)
-      return Results.BadRequest(validationHandler.Errors);
-
-    try
-    {
-      string salesOrderId = await salesFacade.CreateSalesOrderAsync(body, cancellationToken);
-      return Results.Created($"/v1/sales/{salesOrderId}", salesOrderId);
-    }
-    catch
-    {
-      return Results.BadRequest();
-    }
   }
 
   private static async Task<IResult> HandleGetSalesOrder(
