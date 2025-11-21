@@ -9,8 +9,10 @@ internal class MediatorFacade(ISalesFacade salesFacade,
 {
     public async Task<string> CreateSalesOrderAsync(CreateSalesOrderJson body, CancellationToken cancellationToken)
     {
-      cancellationToken.ThrowIfCancellationRequested();
+        cancellationToken.ThrowIfCancellationRequested();
 
-      return await salesFacade.CreateSalesOrderAsync(body, cancellationToken);
-  }
+        var availableStock = await warehouseFacade.GetAvailableStockAsync(body.Rows, cancellationToken);
+
+        return await salesFacade.CreateSalesOrderAsync(body, cancellationToken);
+    }
 }
