@@ -8,7 +8,6 @@ namespace BrewUp.Sales.Facade;
 internal class SalesFacade(ISalesDomainService salesDomainService,
     ISalesOrderService salesOrderService) : ISalesFacade
 {
-
     public Task<string> CreateSalesOrderAsync(CreateSalesOrderJson body, CancellationToken cancellationToken) =>
         salesDomainService.CreateSalesOrderAsync(body, cancellationToken);
 
