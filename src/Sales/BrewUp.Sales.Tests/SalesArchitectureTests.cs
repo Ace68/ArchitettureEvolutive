@@ -50,7 +50,7 @@ public class SalesArchitectureTests
             where Directory.Exists(binFolder)
             let files = Directory.GetFiles(binFolder)
             let folderArray = folder.Split(Path.DirectorySeparatorChar)
-            select files.FirstOrDefault(f => f.EndsWith($"{folderArray[folderArray!.Length - 1]}.dll"))
+            select files.FirstOrDefault(f => f.EndsWith($"{folderArray[^1]}.dll"))
             into assemblyFilename
             where assemblyFilename != null && !assemblyFilename.Contains("Test")
             select Assembly.LoadFile(assemblyFilename)).ToList();
