@@ -19,8 +19,6 @@ public static class SalesFacadeHelper
         services.AddFluentValidationAutoValidation();
         services.AddValidatorsFromAssemblyContaining<CreateSalesOrderValidator>();
         
-        services.AddScoped<ISalesFacade, SalesFacade>();
-
         services.AddSalesDomain();
         services.AddSalesReadModel();
         services.AddSalesInfrastructure(configurationManager);

@@ -13,7 +13,6 @@ public static class SalesReadModelHelper
     public static IServiceCollection AddSalesReadModel(this IServiceCollection services)
     {
         services.AddScoped<IQueries<SalesOrder>, SalesOrderQuery>();
-        services.AddScoped<ISalesOrderService, SalesOrderService>();
 
         services.AddDomainEventHandler<SalesOrderCreatedEventHandler>();
 

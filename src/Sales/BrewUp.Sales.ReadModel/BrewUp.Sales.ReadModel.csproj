@@ -10,4 +10,8 @@
     <ProjectReference Include="..\BrewUp.Sales.Infrastructure\BrewUp.Sales.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="4.3.0" />
+  </ItemGroup>
+
 </Project>
