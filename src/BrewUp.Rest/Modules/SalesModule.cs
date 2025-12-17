@@ -21,8 +21,8 @@ public class SalesModule : IModule
 
     public WebApplication Configure(WebApplication app)
     {
-        var salesCompositionRoot = SalesCompositionRoot.Build(_logger);
-        app.DefineSalesRoutes(salesCompositionRoot);
+        // var salesCompositionRoot = SalesCompositionRoot.Build(_logger);
+        // app.DefineSalesRoutes(salesCompositionRoot);
         
         return app;
     }
