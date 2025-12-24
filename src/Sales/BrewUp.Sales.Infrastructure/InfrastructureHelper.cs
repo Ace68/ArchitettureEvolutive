@@ -12,9 +12,15 @@ public static class InfrastructureHelper
     public static IServiceCollection AddSalesInfrastructure(this IServiceCollection services,
         IConfigurationManager configurationManager)
     {
-        services.AddDbContext<SalesContext>(options =>
-            options.UseSqlServer(configurationManager["BrewUp:SqlServer:ConnectionString"]!));
+        DbContextOptions<SalesContext> options = new DbContextOptionsBuilder<SalesContext>()
+            .UseSqlServer(configurationManager["BrewUp:SqlServer:ConnectionString"]!)
+            .Options;
+        var salesContext = SalesContext.Create(options);
+        services.AddSingleton(salesContext);
         
+        // services.AddDbContext<SalesContext>(options =>
+        //     options.UseSqlServer(configurationManager["BrewUp:SqlServer:ConnectionString"]!));
+        //
         services.AddScoped<IBrewUpRepository<SalesOrder>, SalesOrderRepository>();
         
         return services;

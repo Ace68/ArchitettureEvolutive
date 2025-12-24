@@ -9,6 +9,11 @@ public class SalesContext(DbContextOptions<SalesContext> options) : DbContext(op
 {
     public DbSet<SalesOrder> SalesOrder { get; set; }
     public DbSet<SalesOrderRow> SalesOrderRow { get; set; }
+
+    public static SalesContext Create(DbContextOptions<SalesContext> options)
+    {
+        return new SalesContext(options);
+    }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

@@ -6,7 +6,6 @@ using Serilog.Core;
 namespace BrewUp.Sales.Facade;
 
 public delegate Task<PagedResult<SalesOrderJson>> GetSalesOrders(int page, int pageSize);
-
   
 public record SalesCompositionRoot(
     ReadModel.GetSalesOrders GetSalesOrders)
@@ -18,5 +17,4 @@ public record SalesCompositionRoot(
             GetSalesOrders: 
                 salesReadModelComposition.GetSalesOrders);
     }
-
 }
